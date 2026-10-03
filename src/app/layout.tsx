@@ -1,0 +1,150 @@
+import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { Navbar } from "@/components/navigation/Navbar";
+import { Footer } from "@/components/footer/Footer";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+export const viewport: Viewport = {
+  themeColor: "#2373F4",
+  width: "device-width",
+  initialScale: 1,
+};
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://cloudzyne.com"),
+
+  title: {
+    default: "Cloudzyne — Software Solutions & Engineering",
+    template: "%s — Cloudzyne",
+  },
+
+  description:
+    "Cloudzyne is a software solutions company based in Sri Lanka. We engineer custom software, web applications, mobile platforms, and AI integrations for startups and growing businesses.",
+
+  keywords: [
+    "software development Sri Lanka",
+    "software solutions company",
+    "custom software development",
+    "web application engineering",
+    "mobile application development",
+    "AI solutions Sri Lanka",
+    "Next.js engineering",
+    "Cloudzyne",
+  ],
+
+  authors: [{ name: "Cloudzyne", url: "https://cloudzyne.com" }],
+  creator: "Cloudzyne",
+  publisher: "Cloudzyne",
+
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://cloudzyne.com",
+    siteName: "Cloudzyne",
+    title: "Cloudzyne — Software Solutions & Engineering",
+    description:
+      "Engineering purposeful software solutions for forward-thinking businesses. Based in Sri Lanka.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Cloudzyne — Software Solutions",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Cloudzyne — Software Solutions & Engineering",
+    description:
+      "Engineering purposeful software solutions for forward-thinking businesses. Based in Sri Lanka.",
+    images: ["/og-image.png"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Cloudzyne",
+  legalName: "Cloudzyne Software Solutions",
+  url: "https://cloudzyne.com",
+  logo: "https://cloudzyne.com/logo.png",
+  description:
+    "Custom software engineering and solutions company based in Sri Lanka, building web platforms, mobile apps, and AI integrations.",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "LK",
+    addressLocality: "Colombo",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "info@cloudzyne.com",
+    contactType: "customer service",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" className={inter.variable}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className="min-h-screen bg-white text-slate-900 font-sans antialiased selection:bg-brand-500 selection:text-white flex flex-col justify-between">
+        {/* Skip to Main Content Link for Accessibility (WCAG 2.1 AA) */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-brand-500 text-white font-semibold rounded-lg shadow-lg focus:outline-none"
+        >
+          Skip to main content
+        </a>
+
+        {/* Global Floating Pill Navigation */}
+        <Navbar />
+
+        {/* Main Content Area */}
+        <div id="main-content" className="flex-1">
+          {children}
+        </div>
+
+        {/* Global Footer */}
+        <Footer />
+      </body>
+    </html>
+  );
+}
