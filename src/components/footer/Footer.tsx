@@ -15,7 +15,7 @@ export function Footer() {
           <div className="lg:col-span-2 space-y-6">
             <Link href="/" className="inline-flex items-center">
               <Image
-                src="/logo.png"
+                src="/images/brand/logo.png"
                 alt="Cloudzyne"
                 width={170}
                 height={38}

@@ -28,6 +28,9 @@ export const contactSchema = z.object({
   agreeToTerms: z
     .boolean()
     .refine((val) => val === true, "You must agree to the Terms of Service and Privacy Statement"),
+
+  // Anti-bot honeypot field (must remain empty for human users)
+  botCheck: z.string().optional(),
 });
 
 export type ContactFormData = z.infer<typeof contactSchema>;

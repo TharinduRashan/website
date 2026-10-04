@@ -64,7 +64,7 @@ const servicesGridData: ServiceCardItem[] = [
     icon: <Cloud className="w-10 h-10 text-slate-900 group-hover:text-brand-500 transition-colors" />,
     techs: ["aws", "gcp", "azure", "kubernetes", "docker"],
     description: "Resilient cloud infrastructure, automated CI/CD pipelines, containerization, and data platforms.",
-    href: "/services#custom-software",
+    href: "/services#maintenance",
   },
   {
     id: "ui-ux-design",

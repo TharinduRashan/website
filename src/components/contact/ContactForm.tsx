@@ -27,6 +27,7 @@ export function ContactForm() {
       phone: "",
       message: "",
       agreeToTerms: false,
+      botCheck: "",
     },
   });
 
@@ -94,6 +95,18 @@ export function ContactForm() {
           </div>
         )}
 
+        {/* Anti-bot Honeypot Field (invisible to users, catches spam bots) */}
+        <div className="opacity-0 absolute -left-[9999px] -top-[9999px] h-0 w-0 z-[-1] pointer-events-none select-none overflow-hidden" aria-hidden="true">
+          <label htmlFor="botCheck">Leave this empty</label>
+          <input
+            id="botCheck"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            {...register("botCheck")}
+          />
+        </div>
+
         {/* 2x2 Input Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-7">
           {/* Name Field */}
@@ -121,12 +134,12 @@ export function ContactForm() {
           {/* Company Website Field */}
           <div className="space-y-2">
             <label htmlFor="companyWebsite" className="block text-sm font-medium text-slate-900">
-              Your Company website
+              Company / Website (Optional)
             </label>
             <input
               id="companyWebsite"
               type="text"
-              placeholder="Enter company website link"
+              placeholder="e.g. yourcompany.com"
               className="w-full bg-transparent border-0 border-b border-slate-300 py-3 px-0 text-base text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-brand-500 focus:ring-0 transition-colors"
               {...register("companyWebsite")}
             />
@@ -135,7 +148,7 @@ export function ContactForm() {
           {/* Email Field */}
           <div className="space-y-2">
             <label htmlFor="email" className="block text-sm font-medium text-slate-900">
-              E-mail <span className="text-brand-500">*</span>
+              Email <span className="text-brand-500">*</span>
             </label>
             <input
               id="email"

@@ -52,7 +52,7 @@ export const metadata: Metadata = {
       "Engineering purposeful software solutions for forward-thinking businesses. Based in Sri Lanka.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Cloudzyne — Software Solutions",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     title: "Cloudzyne — Software Solutions & Engineering",
     description:
       "Engineering purposeful software solutions for forward-thinking businesses. Based in Sri Lanka.",
-    images: ["/og-image.png"],
+    images: ["/opengraph-image"],
   },
 
   robots: {
@@ -82,11 +82,11 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+      { url: "/images/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/images/icons/icon.png", sizes: "512x512", type: "image/png" },
     ],
     apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { url: "/images/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
   },
 };
@@ -97,7 +97,7 @@ const jsonLd = {
   name: "Cloudzyne",
   legalName: "Cloudzyne Software Solutions",
   url: "https://cloudzyne.com",
-  logo: "https://cloudzyne.com/logo.png",
+  logo: "https://cloudzyne.com/images/brand/logo.png",
   description:
     "Custom software engineering and solutions company based in Sri Lanka, building web platforms, mobile apps, and AI integrations.",
   address: {

@@ -141,4 +141,27 @@ export const servicesData: ServiceItem[] = [
       "Release Deployment Oversight",
     ],
   },
+  {
+    id: "ui-ux",
+    slug: "ui-ux-design",
+    title: "UI/UX Design & Prototyping",
+    shortDescription:
+      "Design systems, intuitive user workflows, and high-fidelity interactive prototypes built for seamless engineering handover.",
+    fullDescription:
+      "Great software starts with deliberate user experience design. We transform complex workflows into intuitive, accessible interfaces through user journey mapping, design systems, and rapid clickable prototypes.",
+    icon: "Palette",
+    features: [
+      "User research & workflow mapping",
+      "Wireframing & interactive Figma prototypes",
+      "Tailwind-ready design systems & token architectures",
+      "Accessibility & WCAG 2.1 compliance audits",
+    ],
+    technologies: ["Figma", "Tailwind CSS", "React", "Design Systems"],
+    deliverables: [
+      "Interactive Figma Prototype",
+      "Design Token Library",
+      "Component Specification",
+      "Asset Export Package",
+    ],
+  },
 ];

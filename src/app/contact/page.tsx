@@ -34,7 +34,7 @@ export default function ContactPage() {
             className="inline-flex items-center justify-center font-medium rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 text-sm sm:text-base px-7 py-3 gap-2 bg-brand-500 hover:bg-brand-600 text-white shadow-sm hover:shadow-md cursor-pointer"
           >
             <Calendar className="w-4 h-4" />
-            <span>Book a Meeting</span>
+            <span>Send an Inquiry</span>
           </a>
           <a
             href={`mailto:${companyConfig.supportEmail}`}
@@ -47,7 +47,7 @@ export default function ContactPage() {
       </section>
 
       {/* 2. Form Section */}
-      <section id="contact-form" className="section-contact-content max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+      <section id="contact-form" className="section-contact-content max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-28">
         <ContactForm />
       </section>
 

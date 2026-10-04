@@ -11,6 +11,7 @@ import {
   Layers,
   Brain,
   ShieldCheck,
+  Palette,
   ArrowRight,
   Sparkles,
 } from "lucide-react";
@@ -31,6 +32,7 @@ const serviceIconMap: Record<string, React.ReactNode> = {
   Layers: <Layers className="w-6 h-6" />,
   Brain: <Brain className="w-6 h-6" />,
   ShieldCheck: <ShieldCheck className="w-6 h-6" />,
+  Palette: <Palette className="w-6 h-6" />,
 };
 
 const processSteps = [
@@ -112,8 +114,9 @@ export default function ServicesPage() {
             {servicesData.map((service, idx) => (
               <Link
                 key={service.id}
+                id={service.id}
                 href="/contact"
-                className={`p-8 rounded-3xl transition-all duration-300 group flex flex-col justify-between border ${
+                className={`scroll-mt-28 p-8 rounded-3xl transition-all duration-300 group flex flex-col justify-between border ${
                   idx === 0
                     ? "bg-white border-brand-300 shadow-sm ring-1 ring-brand-100 hover:border-brand-500"
                     : "bg-white border-slate-200/80 shadow-2xs hover:border-brand-300 hover:shadow-sm"

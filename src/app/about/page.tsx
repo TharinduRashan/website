@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Badge } from "@/ui/Badge";
 import { CtaSection } from "@/components/sections/CtaSection";
 import {
@@ -46,10 +47,11 @@ const audiences = [
 
 const founders = [
   {
-    initials: "RP",
+    initials: "R",
     name: "Rashan",
     role: "Co-Founder",
     title: "Product & Software Engineering",
+    image: "/images/team/rashan.webp",
     description:
       "Leads product engineering and full-stack software architecture, focusing on building clean, dependable digital systems tailored to business needs.",
   },
@@ -58,6 +60,7 @@ const founders = [
     name: "Malshan",
     role: "Co-Founder",
     title: "Systems & Software Engineering",
+    image: "/images/team/malshan.webp",
     description:
       "Drives software development and system implementation, working directly with clients to translate operational requirements into high-performing products.",
   },
@@ -67,7 +70,7 @@ export default function AboutPage() {
   return (
     <main className="pt-28 md:pt-36 bg-white min-h-screen">
       {/* 1. Page Hero */}
-      <section className="pb-16 sm:pb-24 border-b border-slate-100">
+      <section className="pt-6 sm:pt-10 pb-24 sm:pb-32 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-950 leading-[1.1]">
@@ -132,13 +135,13 @@ export default function AboutPage() {
             {audiences.map((aud, idx) => (
               <div
                 key={idx}
-                className="p-7 rounded-3xl bg-slate-50/70 border border-slate-200/70 shadow-2xs space-y-3.5 hover:border-brand-300 transition-colors flex flex-col justify-between"
+                className="group p-7 rounded-3xl bg-slate-50/70 border border-slate-200/70 shadow-2xs space-y-3.5 hover:border-brand-500/80 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
               >
                 <div className="space-y-3.5">
-                  <div className="w-11 h-11 rounded-2xl bg-white border border-slate-200/80 shadow-2xs text-brand-600 flex items-center justify-center">
+                  <div className="w-11 h-11 rounded-2xl bg-white border border-slate-200/80 shadow-2xs text-brand-600 group-hover:bg-brand-500 group-hover:text-white flex items-center justify-center transition-colors duration-300">
                     {aud.icon}
                   </div>
-                  <h3 className="text-lg font-bold text-slate-950">{aud.title}</h3>
+                  <h3 className="text-lg font-bold text-slate-950 group-hover:text-brand-600 transition-colors duration-200">{aud.title}</h3>
                 </div>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   {aud.description}
@@ -150,7 +153,7 @@ export default function AboutPage() {
       </section>
 
       {/* 4. The People Behind Cloudzyne */}
-      <section className="py-20 md:py-28 bg-slate-50/60 border-b border-slate-200/60">
+      <section id="team" className="py-20 md:py-28 bg-slate-50/60 border-b border-slate-200/60 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center mb-16">
             <Badge variant="brand" className="mb-4">
@@ -168,16 +171,26 @@ export default function AboutPage() {
             {founders.map((f, idx) => (
               <div
                 key={idx}
-                className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/80 shadow-2xs space-y-5 hover:border-brand-300 transition-colors"
+                className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/80 shadow-2xs space-y-5 hover:border-brand-500/80 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-brand-50 border border-brand-100 flex items-center justify-center text-brand-600 font-bold text-lg shadow-2xs">
-                    {f.initials}
+                  <div className="w-14 h-14 rounded-2xl bg-brand-50 border border-brand-100 flex items-center justify-center text-brand-600 font-bold text-lg shadow-2xs overflow-hidden shrink-0 relative">
+                    {f.image ? (
+                      <Image
+                        src={f.image}
+                        alt={f.name}
+                        fill
+                        className="object-cover object-center"
+                        sizes="56px"
+                      />
+                    ) : (
+                      f.initials
+                    )}
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-slate-950">{f.name}</h3>
-                    <p className="text-xs font-bold uppercase tracking-wider text-brand-600 mt-0.5">
-                      {f.role}
+                    <p className="text-xs font-semibold text-brand-600 mt-0.5">
+                      {f.role} &middot; {f.title}
                     </p>
                   </div>
                 </div>

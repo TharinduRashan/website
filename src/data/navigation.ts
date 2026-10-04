@@ -14,6 +14,7 @@ export const footerNav = {
     { label: "Mobile Applications", href: "/services#mobile-apps" },
     { label: "SaaS & Product Dev", href: "/services#saas-product" },
     { label: "AI & Automation", href: "/services#ai-solutions" },
+    { label: "UI/UX Design", href: "/services#ui-ux" },
     { label: "Software Maintenance", href: "/services#maintenance" },
   ],
   company: [

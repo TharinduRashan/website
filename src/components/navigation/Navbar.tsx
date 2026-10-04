@@ -14,6 +14,14 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  const handleCloseMobileMenu = React.useCallback(() => {
+    setIsMobileMenuOpen(false);
+  }, []);
+
+  const handleToggleMobileMenu = React.useCallback(() => {
+    setIsMobileMenuOpen((prev) => !prev);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -45,7 +53,7 @@ export function Navbar() {
               className="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-lg py-0.5 px-1"
             >
               <Image
-                src="/logo.png"
+                src="/images/brand/logo.png"
                 alt="Cloudzyne"
                 width={160}
                 height={35}
@@ -57,7 +65,9 @@ export function Navbar() {
             {/* Desktop Navigation Links */}
             <div className="hidden lg:flex items-center gap-1 xl:gap-2">
               {mainNavItems.map((item) => {
-                const isActive = pathname === item.href;
+                const isActive =
+                  pathname === item.href ||
+                  (item.href !== "/" && pathname.startsWith(item.href));
                 return (
                   <Link
                     key={item.href}
@@ -98,8 +108,8 @@ export function Navbar() {
               </Button>
               <button
                 type="button"
-                onClick={() => setIsMobileMenuOpen(true)}
-                className="p-2 rounded-full text-slate-700 hover:text-slate-950 hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500"
+                onClick={handleToggleMobileMenu}
+                className="p-2 rounded-full text-slate-700 hover:text-slate-950 hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer"
                 aria-label="Open navigation menu"
                 aria-expanded={isMobileMenuOpen}
               >
@@ -113,7 +123,7 @@ export function Navbar() {
       {/* Mobile Menu Drawer */}
       <MobileMenu
         isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
+        onClose={handleCloseMobileMenu}
       />
     </>
   );

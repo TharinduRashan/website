@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -16,10 +16,14 @@ interface MobileMenuProps {
 
 export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const pathname = usePathname();
+  const prevPathname = useRef(pathname);
 
-  // Close menu on route change
+  // Close menu only when route actually changes
   useEffect(() => {
-    onClose();
+    if (prevPathname.current !== pathname) {
+      prevPathname.current = pathname;
+      onClose();
+    }
   }, [pathname, onClose]);
 
   // Lock body scroll when menu is open
@@ -66,7 +70,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 28, stiffness: 280 }}
-            className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl flex flex-col p-6 sm:p-8"
+            className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl flex flex-col p-6 sm:p-8 z-10"
             role="dialog"
             aria-modal="true"
             aria-label="Navigation menu"
@@ -79,7 +83,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 onClick={onClose}
               >
                 <Image
-                  src="/logo.png"
+                  src="/images/brand/logo.png"
                   alt="Cloudzyne"
                   width={150}
                   height={34}
@@ -99,7 +103,9 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             {/* Nav links */}
             <nav className="flex-1 py-8 flex flex-col gap-2 overflow-y-auto">
               {mainNavItems.map((item) => {
-                const isActive = pathname === item.href;
+                const isActive =
+                  pathname === item.href ||
+                  (item.href !== "/" && pathname.startsWith(item.href));
                 return (
                   <Link
                     key={item.href}

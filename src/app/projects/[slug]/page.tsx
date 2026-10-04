@@ -74,7 +74,7 @@ export default async function ProjectDetailPage({
       </div>
 
       {/* Project Header Banner */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <div
           className={`w-full rounded-3xl bg-gradient-to-br ${project.coverColor} p-8 sm:p-12 border border-slate-200/80 space-y-6 relative overflow-hidden`}
         >
@@ -125,15 +125,30 @@ export default async function ProjectDetailPage({
       {/* Visual Mockup Preview Showcase */}
       {project.imageUrl && (
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-          <div className="relative aspect-[16/9] w-full rounded-3xl overflow-hidden border border-slate-200/90 shadow-lg bg-slate-950">
-            <Image
-              src={project.imageUrl}
-              alt={project.title}
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 1024px"
-              className="object-cover object-top"
-            />
+          <div className="rounded-3xl overflow-hidden border border-slate-200/90 shadow-xl bg-slate-900 ring-1 ring-slate-900/5">
+            {/* Top Browser Bar */}
+            <div className="px-5 py-3 bg-slate-950/80 border-b border-slate-800 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
+                <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
+                <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
+              </div>
+              <div className="text-[11px] font-mono text-slate-400 bg-slate-900/90 px-4 py-1 rounded-full border border-slate-800 max-w-xs truncate">
+                {project.liveUrl || `cloudzyne.com/projects/${project.slug}`}
+              </div>
+              <div className="w-12 hidden sm:block" />
+            </div>
+            {/* Image Preview */}
+            <div className="relative aspect-[16/9] w-full bg-slate-950">
+              <Image
+                src={project.imageUrl}
+                alt={project.title}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 1024px"
+                className="object-cover object-top"
+              />
+            </div>
           </div>
         </div>
       )}
