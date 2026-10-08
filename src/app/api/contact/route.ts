@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
 import { contactSchema } from "@/lib/validators";
+
+const resendApiKey = process.env.RESEND_API_KEY;
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 // In-memory sliding window rate limiter: max 5 requests per 10 minutes per IP
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
@@ -94,6 +98,80 @@ export async function POST(request: NextRequest) {
       agreeToTerms: result.data.agreeToTerms,
       timestamp: new Date().toISOString(),
     });
+
+    // Send email notification via Resend if API key is present
+    if (resend) {
+      const toEmail = process.env.CONTACT_TO_EMAIL || "info@cloudzyne.com";
+      const fromEmail = process.env.CONTACT_FROM_EMAIL || "onboarding@resend.dev";
+
+      const emailSubject = `New Project Inquiry from ${result.data.name}`;
+      const emailText = `New contact inquiry received on Cloudzyne:
+
+Name: ${result.data.name}
+Email: ${result.data.email}
+Phone: ${result.data.phone || "Not provided"}
+Company / Website: ${result.data.companyWebsite || "Not provided"}
+
+Project Details:
+${result.data.message}
+
+Received at: ${new Date().toISOString()}
+      `.trim();
+
+      const emailHtml = `
+<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px; background: #ffffff;">
+  <div style="border-bottom: 2px solid #2373F4; padding-bottom: 16px; margin-bottom: 24px;">
+    <h2 style="margin: 0; color: #0f172a; font-size: 20px;">New Project Inquiry</h2>
+    <p style="margin: 4px 0 0; color: #64748b; font-size: 14px;">Submitted via Cloudzyne website contact form</p>
+  </div>
+
+  <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 14px;">
+    <tr>
+      <td style="padding: 8px 0; color: #64748b; width: 140px; font-weight: 600;">Client Name:</td>
+      <td style="padding: 8px 0; color: #0f172a; font-weight: 500;">${result.data.name}</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 0; color: #64748b; font-weight: 600;">Email Address:</td>
+      <td style="padding: 8px 0;"><a href="mailto:${result.data.email}" style="color: #2373F4; text-decoration: none;">${result.data.email}</a></td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 0; color: #64748b; font-weight: 600;">Phone Number:</td>
+      <td style="padding: 8px 0; color: #0f172a;">${result.data.phone || "Not provided"}</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px 0; color: #64748b; font-weight: 600;">Company / Web:</td>
+      <td style="padding: 8px 0; color: #0f172a;">${result.data.companyWebsite || "Not provided"}</td>
+    </tr>
+  </table>
+
+  <div style="background: #f8fafc; border-left: 4px solid #2373F4; padding: 16px; border-radius: 4px; margin-bottom: 24px;">
+    <h3 style="margin: 0 0 8px; color: #0f172a; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;">Project Description</h3>
+    <p style="margin: 0; color: #334155; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${result.data.message}</p>
+  </div>
+
+  <div style="font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9; pt: 16px;">
+    <p style="margin: 0;">Hit "Reply" in your email client to reply directly to ${result.data.email}.</p>
+  </div>
+</div>
+      `.trim();
+
+      const { error: sendError } = await resend.emails.send({
+        from: fromEmail,
+        to: toEmail,
+        replyTo: result.data.email,
+        subject: emailSubject,
+        text: emailText,
+        html: emailHtml,
+      });
+
+      if (sendError) {
+        console.error("[Resend Error]: Failed to send email:", sendError);
+      } else {
+        console.log(`[Resend Success]: Email sent to ${toEmail}`);
+      }
+    } else {
+      console.warn("[Resend Warning]: RESEND_API_KEY is not configured in .env.local. Inquiry logged to console only.");
+    }
 
     return NextResponse.json(
       {

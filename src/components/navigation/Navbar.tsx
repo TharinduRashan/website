@@ -53,10 +53,10 @@ export function Navbar() {
               className="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-lg py-0.5 px-1"
             >
               <Image
-                src="/images/brand/logo.png"
+                src="/images/brand/cloudzyne-vortex-lockup.svg"
                 alt="Cloudzyne"
                 width={160}
-                height={35}
+                height={40}
                 priority
                 className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-[1.02]"
               />

@@ -1,12 +1,21 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Home } from "lucide-react";
 
 export default function NotFound() {
   return (
     <main className="min-h-screen pt-36 pb-24 flex items-center justify-center bg-slate-50/50">
       <div className="max-w-md mx-auto px-4 text-center space-y-6">
-        <div className="w-20 h-20 rounded-3xl bg-brand-50 text-brand-600 border border-brand-100 flex items-center justify-center mx-auto text-3xl font-extrabold font-mono shadow-xs">
-          404
+        <div className="flex justify-center">
+          <div className="w-20 h-20 rounded-3xl bg-brand-50 border border-brand-100 flex items-center justify-center p-3.5 shadow-xs">
+            <Image
+              src="/images/brand/cloudzyne-vortex-mark-blue.svg"
+              alt="Cloudzyne"
+              width={48}
+              height={48}
+              className="w-12 h-12 object-contain"
+            />
+          </div>
         </div>
         <div className="space-y-2">
           <h1 className="text-3xl font-extrabold text-slate-950 tracking-tight">

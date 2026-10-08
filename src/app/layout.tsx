@@ -82,11 +82,12 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico" },
-      { url: "/images/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/images/icons/icon.png", sizes: "512x512", type: "image/png" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/images/brand/cloudzyne-vortex-mark-blue.svg", type: "image/svg+xml" },
+      { url: "/images/brand/cloudzyne-vortex-app-icon-1024.png", sizes: "1024x1024", type: "image/png" },
     ],
     apple: [
-      { url: "/images/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { url: "/images/brand/cloudzyne-vortex-app-icon-1024.png", sizes: "180x180", type: "image/png" },
     ],
   },
 };
@@ -97,7 +98,7 @@ const jsonLd = {
   name: "Cloudzyne",
   legalName: "Cloudzyne Software Solutions",
   url: "https://cloudzyne.com",
-  logo: "https://cloudzyne.com/images/brand/logo.png",
+  logo: "https://cloudzyne.com/images/brand/cloudzyne-vortex-lockup.png",
   description:
     "Custom software engineering and solutions company based in Sri Lanka, building web platforms, mobile apps, and AI integrations.",
   address: {

@@ -83,10 +83,10 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 onClick={onClose}
               >
                 <Image
-                  src="/images/brand/logo.png"
+                  src="/images/brand/cloudzyne-vortex-lockup.svg"
                   alt="Cloudzyne"
                   width={150}
-                  height={34}
+                  height={38}
                   className="h-8 w-auto object-contain"
                 />
               </Link>
