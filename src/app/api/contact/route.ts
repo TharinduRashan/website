@@ -2,9 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { contactSchema } from "@/lib/validators";
 
-const resendApiKey = process.env.RESEND_API_KEY;
-const resend = resendApiKey ? new Resend(resendApiKey) : null;
-
 // In-memory sliding window rate limiter: max 5 requests per 10 minutes per IP
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const MAX_REQUESTS_PER_WINDOW = 5;
@@ -100,9 +97,16 @@ export async function POST(request: NextRequest) {
     });
 
     // Send email notification via Resend if API key is present
-    if (resend) {
-      const toEmail = process.env.CONTACT_TO_EMAIL || "info@cloudzyne.com";
-      const fromEmail = process.env.CONTACT_FROM_EMAIL || "onboarding@resend.dev";
+    const apiKey = process.env.RESEND_API_KEY;
+    if (apiKey) {
+      const resend = new Resend(apiKey);
+      const toEnv = process.env.CONTACT_TO_EMAIL || "info@cloudzyne.com";
+      const toRecipients = toEnv
+        .split(",")
+        .map((e) => e.trim())
+        .filter(Boolean);
+
+      const fromEmail = process.env.CONTACT_FROM_EMAIL || "Cloudzyne <inquiries@cloudzyne.com>";
 
       const emailSubject = `New Project Inquiry from ${result.data.name}`;
       const emailText = `New contact inquiry received on Cloudzyne:
@@ -155,9 +159,9 @@ Received at: ${new Date().toISOString()}
 </div>
       `.trim();
 
-      const { error: sendError } = await resend.emails.send({
+      const { data: resendData, error: sendError } = await resend.emails.send({
         from: fromEmail,
-        to: toEmail,
+        to: toRecipients,
         replyTo: result.data.email,
         subject: emailSubject,
         text: emailText,
@@ -166,9 +170,13 @@ Received at: ${new Date().toISOString()}
 
       if (sendError) {
         console.error("[Resend Error]: Failed to send email:", sendError);
-      } else {
-        console.log(`[Resend Success]: Email sent to ${toEmail}`);
+        return NextResponse.json(
+          { error: `Email delivery failed: ${sendError.message}` },
+          { status: 500 }
+        );
       }
+
+      console.log(`[Resend Success]: Email sent with ID ${resendData?.id} to:`, toRecipients);
     } else {
       console.warn("[Resend Warning]: RESEND_API_KEY is not configured in .env.local. Inquiry logged to console only.");
     }
