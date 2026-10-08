@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { companyConfig } from "@/data/company";
 import { footerNav } from "@/data/navigation";
-import { ArrowUpRight, Mail, MapPin } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 
 export function Footer() {
   return (
@@ -40,6 +40,18 @@ export function Footer() {
                   className="hover:text-brand-600 transition-colors font-medium text-slate-800"
                 >
                   {companyConfig.supportEmail}
+                </a>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Phone className="w-4 h-4 text-brand-500 shrink-0" />
+                <a
+                  href={companyConfig.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand-600 transition-colors font-medium text-slate-800 inline-flex items-center gap-1.5"
+                  aria-label={`Chat with us on WhatsApp at ${companyConfig.phone}`}
+                >
+                  <span>{companyConfig.phoneDisplay}</span>
                 </a>
               </div>
             </div>

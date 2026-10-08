@@ -69,18 +69,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 3. Honeypot check: If botCheck is filled, silently discard spambot request
-    if (result.data.botCheck && result.data.botCheck.trim() !== "") {
-      console.warn(`[Spam Bot Rejected]: Bot filled honeypot field from IP ${clientIp}`);
-      return NextResponse.json(
-        {
-          success: true,
-          message: "Your inquiry has been received.",
-        },
-        { status: 200 }
-      );
-    }
-
     // Register valid request timestamp
     recentRequests.push(now);
     ipRequestHistory.set(clientIp, recentRequests);

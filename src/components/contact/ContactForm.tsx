@@ -95,17 +95,6 @@ export function ContactForm() {
           </div>
         )}
 
-        {/* Anti-bot Honeypot Field (invisible to users, catches spam bots) */}
-        <div className="opacity-0 absolute -left-[9999px] -top-[9999px] h-0 w-0 z-[-1] pointer-events-none select-none overflow-hidden" aria-hidden="true">
-          <label htmlFor="botCheck">Leave this empty</label>
-          <input
-            id="botCheck"
-            type="text"
-            tabIndex={-1}
-            autoComplete="off"
-            {...register("botCheck")}
-          />
-        </div>
 
         {/* 2x2 Input Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-7">

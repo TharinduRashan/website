@@ -9,6 +9,9 @@ export const companyConfig = {
   domain: "https://cloudzyne.com",
   location: "Sri Lanka",
   supportEmail: "info@cloudzyne.com", // clearly defined official placeholder / configured email
+  phone: "+94787255755",
+  phoneDisplay: "+94 78 725 5755",
+  whatsappUrl: "https://wa.me/94787255755",
   brandColor: "#2373F4",
   foundedYear: 2026,
 };

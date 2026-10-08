@@ -109,6 +109,7 @@ const jsonLd = {
   contactPoint: {
     "@type": "ContactPoint",
     email: "info@cloudzyne.com",
+    telephone: "+94787255755",
     contactType: "customer service",
   },
 };
