@@ -12,6 +12,10 @@ export const companyConfig = {
   phone: "+94787255755",
   phoneDisplay: "+94 78 725 5755",
   whatsappUrl: "https://wa.me/94787255755",
+  social: {
+    linkedin: "https://www.linkedin.com/company/cloudzyne",
+    instagram: "https://www.instagram.com/cloudzyneofficial",
+  },
   brandColor: "#2373F4",
   foundedYear: 2026,
 };

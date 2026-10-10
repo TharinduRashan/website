@@ -17,7 +17,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://cloudzyne.com"),
+  metadataBase: new URL("https://www.cloudzyne.com"),
 
   title: {
     default: "Cloudzyne — Software Solutions & Engineering",
@@ -38,14 +38,14 @@ export const metadata: Metadata = {
     "Cloudzyne",
   ],
 
-  authors: [{ name: "Cloudzyne", url: "https://cloudzyne.com" }],
+  authors: [{ name: "Cloudzyne", url: "https://www.cloudzyne.com" }],
   creator: "Cloudzyne",
   publisher: "Cloudzyne",
 
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://cloudzyne.com",
+    url: "https://www.cloudzyne.com",
     siteName: "Cloudzyne",
     title: "Cloudzyne — Software Solutions & Engineering",
     description:
@@ -97,8 +97,8 @@ const jsonLd = {
   "@type": "Organization",
   name: "Cloudzyne",
   legalName: "Cloudzyne Software Solutions",
-  url: "https://cloudzyne.com",
-  logo: "https://cloudzyne.com/images/brand/cloudzyne-vortex-lockup.png",
+  url: "https://www.cloudzyne.com",
+  logo: "https://www.cloudzyne.com/images/brand/cloudzyne-vortex-lockup.png",
   description:
     "Custom software engineering and solutions company based in Sri Lanka, building web platforms, mobile apps, and AI integrations.",
   address: {
@@ -112,6 +112,10 @@ const jsonLd = {
     telephone: "+94787255755",
     contactType: "customer service",
   },
+  sameAs: [
+    "https://www.linkedin.com/company/cloudzyne",
+    "https://www.instagram.com/cloudzyneofficial",
+  ],
 };
 
 export default function RootLayout({

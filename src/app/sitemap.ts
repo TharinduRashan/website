@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { projects } from "@/data/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://cloudzyne.com";
+  const base = "https://www.cloudzyne.com";
 
   const staticPages = [
     {
