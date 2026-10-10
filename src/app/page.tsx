@@ -3,7 +3,6 @@ import { HeroSection } from "@/components/hero/HeroSection";
 import { TrustSection } from "@/components/trust/TrustSection";
 import { ServicesSection } from "@/components/services/ServicesSection";
 import { ProjectsSection } from "@/components/projects/ProjectsSection";
-import { FaqSection } from "@/components/sections/FaqSection";
 import { CtaSection } from "@/components/sections/CtaSection";
 
 export const metadata: Metadata = {
@@ -38,10 +37,7 @@ export default function HomePage() {
       {/* 4. Selected Projects Section */}
       <ProjectsSection />
 
-      {/* 5. Frequently Asked Questions (FAQPage SEO) */}
-      <FaqSection />
-
-      {/* 6. Closing CTA Section */}
+      {/* 5. Closing CTA Section */}
       <CtaSection />
     </main>
   );
