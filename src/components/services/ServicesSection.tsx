@@ -78,7 +78,7 @@ const servicesGridData: ServiceCardItem[] = [
 
 export function ServicesSection() {
   return (
-    <section id="services" className="py-24 sm:py-32 bg-white relative">
+    <section id="services" className="pt-24 sm:pt-32 pb-14 sm:pb-16 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Dominant Centered Title (Exact structure from reference image) */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 space-y-3">
@@ -157,6 +157,11 @@ export function ServicesSection() {
               Services Overview
             </Button>
           </div>
+        </div>
+
+        {/* Little Horizontal Divider Line */}
+        <div className="pt-14 sm:pt-16 flex justify-center" aria-hidden="true">
+          <div className="w-20 sm:w-28 h-0.5 bg-slate-200 rounded-full" />
         </div>
       </div>
     </section>
