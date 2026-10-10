@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "This Privacy Policy explains how Cloudzyne handles personal information submitted through our website and service inquiries.",
   alternates: {
-    canonical: "https://cloudzyne.com/privacy",
+    canonical: "https://www.cloudzyne.com/privacy",
   },
 };
 

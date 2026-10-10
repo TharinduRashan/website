@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "These Terms of Service govern your access to and use of cloudzyne.com and its content.",
   alternates: {
-    canonical: "https://cloudzyne.com/terms",
+    canonical: "https://www.cloudzyne.com/terms",
   },
 };
 

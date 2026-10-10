@@ -10,12 +10,81 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About — Cloudzyne Software Solutions",
+  title: "About Us — Cloudzyne Software Engineering Team",
   description:
     "Cloudzyne is an engineer-founded software company based in Sri Lanka, building dependable custom software, web platforms, and mobile products for businesses worldwide.",
   alternates: {
-    canonical: "https://cloudzyne.com/about",
+    canonical: "https://www.cloudzyne.com/about",
   },
+  openGraph: {
+    title: "About Cloudzyne — Software Solutions & Engineering",
+    description:
+      "Engineer-founded software company based in Sri Lanka, creating high-impact custom software, web platforms, and mobile apps.",
+    url: "https://www.cloudzyne.com/about",
+    type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "About Cloudzyne",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Cloudzyne — Software Solutions & Engineering",
+    description:
+      "Engineer-founded software company based in Sri Lanka, creating high-impact custom software, web platforms, and mobile apps.",
+  },
+};
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.cloudzyne.com",
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "About",
+          "item": "https://www.cloudzyne.com/about",
+        },
+      ],
+    },
+    {
+      "@type": "AboutPage",
+      "@id": "https://www.cloudzyne.com/about#webpage",
+      "url": "https://www.cloudzyne.com/about",
+      "name": "About Cloudzyne",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "Cloudzyne",
+        "url": "https://www.cloudzyne.com",
+        "founder": [
+          {
+            "@type": "Person",
+            "name": "Rashan",
+            "jobTitle": "Co-Founder, Product & Software Engineering",
+            "image": "https://www.cloudzyne.com/images/team/rashan.webp",
+          },
+          {
+            "@type": "Person",
+            "name": "Malshan",
+            "jobTitle": "Co-Founder, Systems & Software Engineering",
+            "image": "https://www.cloudzyne.com/images/team/malshan.webp",
+          },
+        ],
+      },
+    },
+  ],
 };
 
 const audiences = [
@@ -69,6 +138,12 @@ const founders = [
 export default function AboutPage() {
   return (
     <main className="pt-28 md:pt-36 bg-white min-h-screen">
+      {/* About Breadcrumbs & Organization Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+      />
+
       {/* 1. Page Hero */}
       <section className="pt-6 sm:pt-10 pb-24 sm:pb-32 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

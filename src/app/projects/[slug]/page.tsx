@@ -43,7 +43,14 @@ export async function generateMetadata({
     title: `${project.title} — Case Study | Cloudzyne`,
     description: project.description,
     alternates: {
-      canonical: `https://cloudzyne.com/projects/${project.slug}`,
+      canonical: `https://www.cloudzyne.com/projects/${project.slug}`,
+    },
+    openGraph: {
+      title: `${project.title} — Case Study | Cloudzyne`,
+      description: project.description,
+      url: `https://www.cloudzyne.com/projects/${project.slug}`,
+      type: "article",
+      images: project.imageUrl ? [{ url: project.imageUrl, alt: project.title }] : undefined,
     },
   };
 }
@@ -60,8 +67,58 @@ export default async function ProjectDetailPage({
 
   const isAcademic = project.label === "Academic Project";
 
+  const caseStudySchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.cloudzyne.com",
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": "https://www.cloudzyne.com/projects",
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": project.title,
+            "item": `https://www.cloudzyne.com/projects/${project.slug}`,
+          },
+        ],
+      },
+      {
+        "@type": "CreativeWork",
+        "name": project.title,
+        "headline": `${project.title} — Software Case Study`,
+        "description": project.description,
+        "url": `https://www.cloudzyne.com/projects/${project.slug}`,
+        "image": project.imageUrl
+          ? `https://www.cloudzyne.com${project.imageUrl}`
+          : "https://www.cloudzyne.com/opengraph-image",
+        "author": {
+          "@type": "Organization",
+          "name": "Cloudzyne",
+          "url": "https://www.cloudzyne.com",
+        },
+      },
+    ],
+  };
+
   return (
     <main className="pt-28 md:pt-36 bg-white min-h-screen">
+      {/* Case Study Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }}
+      />
+
       {/* Top Breadcrumb / Back Link */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
         <Link

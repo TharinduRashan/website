@@ -17,12 +17,75 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Services — Cloudzyne Software Solutions",
+  title: "Software Development Services — Cloudzyne Sri Lanka",
   description:
     "Explore Cloudzyne's full range of software engineering services: custom software development, web applications, mobile apps, SaaS products, AI solutions, and software maintenance.",
   alternates: {
-    canonical: "https://cloudzyne.com/services",
+    canonical: "https://www.cloudzyne.com/services",
   },
+  openGraph: {
+    title: "Software Engineering Services — Cloudzyne",
+    description:
+      "Custom software development, web platforms, mobile apps, and AI integrations built for forward-thinking businesses.",
+    url: "https://www.cloudzyne.com/services",
+    type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Cloudzyne Software Services",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Software Engineering Services — Cloudzyne",
+    description:
+      "Custom software development, web platforms, mobile apps, and AI integrations built for forward-thinking businesses.",
+  },
+};
+
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.cloudzyne.com",
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://www.cloudzyne.com/services",
+        },
+      ],
+    },
+    {
+      "@type": "ItemList",
+      "name": "Cloudzyne Software Engineering Services",
+      "description": "Comprehensive software solutions, web application engineering, and mobile app development.",
+      "itemListElement": servicesData.map((service, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "Service",
+          "name": service.title,
+          "description": service.shortDescription,
+          "provider": {
+            "@type": "Organization",
+            "name": "Cloudzyne",
+            "url": "https://www.cloudzyne.com",
+          },
+        },
+      })),
+    },
+  ],
 };
 
 const serviceIconMap: Record<string, React.ReactNode> = {
@@ -71,6 +134,12 @@ const processSteps = [
 export default function ServicesPage() {
   return (
     <main className="pt-28 md:pt-36 bg-white min-h-screen">
+      {/* Services Breadcrumb & ItemList Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
+      />
+
       {/* 1. Services Hero */}
       <section className="pb-16 sm:pb-24 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

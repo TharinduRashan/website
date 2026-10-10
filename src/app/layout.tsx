@@ -94,27 +94,70 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Cloudzyne",
-  legalName: "Cloudzyne Software Solutions",
-  url: "https://www.cloudzyne.com",
-  logo: "https://www.cloudzyne.com/images/brand/cloudzyne-vortex-lockup.png",
-  description:
-    "Custom software engineering and solutions company based in Sri Lanka, building web platforms, mobile apps, and AI integrations.",
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "LK",
-    addressLocality: "Colombo",
-  },
-  contactPoint: {
-    "@type": "ContactPoint",
-    email: "info@cloudzyne.com",
-    telephone: "+94787255755",
-    contactType: "customer service",
-  },
-  sameAs: [
-    "https://www.linkedin.com/company/cloudzyne",
-    "https://www.instagram.com/cloudzyneofficial",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.cloudzyne.com/#organization",
+      name: "Cloudzyne",
+      legalName: "Cloudzyne Software Solutions",
+      url: "https://www.cloudzyne.com",
+      logo: "https://www.cloudzyne.com/images/brand/cloudzyne-vortex-lockup.png",
+      description:
+        "Custom software engineering and solutions company based in Sri Lanka, building web platforms, mobile apps, and AI integrations.",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Colombo",
+        addressCountry: "LK",
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: "info@cloudzyne.com",
+        telephone: "+94787255755",
+        contactType: "customer service",
+      },
+      sameAs: [
+        "https://www.linkedin.com/company/cloudzyne",
+        "https://www.instagram.com/cloudzyneofficial",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.cloudzyne.com/#website",
+      url: "https://www.cloudzyne.com",
+      name: "Cloudzyne",
+      publisher: {
+        "@id": "https://www.cloudzyne.com/#organization",
+      },
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://www.cloudzyne.com/#localbusiness",
+      name: "Cloudzyne Software Solutions",
+      image: "https://www.cloudzyne.com/images/brand/cloudzyne-vortex-lockup.png",
+      url: "https://www.cloudzyne.com",
+      telephone: "+94787255755",
+      priceRange: "$$",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Colombo",
+        addressCountry: "LK",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 6.9271,
+        longitude: 79.8612,
+      },
+      areaServed: [
+        {
+          "@type": "Country",
+          name: "Sri Lanka",
+        },
+        {
+          "@type": "AdministrativeArea",
+          name: "Worldwide",
+        },
+      ],
+    },
   ],
 };
 

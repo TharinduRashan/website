@@ -5,17 +5,84 @@ import { MapPin, Mail, Calendar, PhoneCall, ShieldCheck, Clock } from "lucide-re
 import { companyConfig } from "@/data/company";
 
 export const metadata: Metadata = {
-  title: "Contact — Cloudzyne Software Solutions",
+  title: "Contact Cloudzyne — Software Consultation & Inquiries",
   description:
-    "Get in touch with Cloudzyne. Tell us about your software project, operational challenge, or digital idea.",
+    "Get in touch with Cloudzyne. Request a software consultation, discuss your web or mobile app requirements, or reach out to our team in Sri Lanka.",
   alternates: {
-    canonical: "https://cloudzyne.com/contact",
+    canonical: "https://www.cloudzyne.com/contact",
   },
+  openGraph: {
+    title: "Contact Cloudzyne — Software Solutions & Engineering",
+    description:
+      "Ready to engineer your next software system? Speak with Cloudzyne's technical team today.",
+    url: "https://www.cloudzyne.com/contact",
+    type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Contact Cloudzyne",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Cloudzyne — Software Solutions & Engineering",
+    description:
+      "Ready to engineer your next software system? Speak with Cloudzyne's technical team today.",
+  },
+};
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.cloudzyne.com",
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact",
+          "item": "https://www.cloudzyne.com/contact",
+        },
+      ],
+    },
+    {
+      "@type": "ContactPage",
+      "@id": "https://www.cloudzyne.com/contact#webpage",
+      "url": "https://www.cloudzyne.com/contact",
+      "name": "Contact Cloudzyne",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "Cloudzyne",
+        "telephone": "+94787255755",
+        "email": "info@cloudzyne.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Colombo",
+          "addressCountry": "LK",
+        },
+      },
+    },
+  ],
 };
 
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-slate-50/60 pt-28 pb-20 md:pt-36 md:pb-28">
+      {/* Contact Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
+      />
+
       {/* 1. Header Section */}
       <section className="section-contact-header max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12 sm:mb-16">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-950 leading-tight">
