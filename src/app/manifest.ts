@@ -12,24 +12,22 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#2373F4",
     icons: [
       {
-        src: "/favicon.ico",
-        sizes: "any",
-        type: "image/x-icon",
-      },
-      {
         src: "/images/icons/icon-192.png",
         sizes: "192x192",
         type: "image/png",
+        purpose: "any",
       },
       {
         src: "/images/icons/icon-512.png",
         sizes: "512x512",
         type: "image/png",
+        purpose: "any",
       },
       {
         src: "/images/brand/cloudzyne-vortex-app-icon-1024.png",
         sizes: "1024x1024",
         type: "image/png",
+        purpose: "any",
       },
     ],
   };
