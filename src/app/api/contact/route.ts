@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
         .map((e) => e.trim())
         .filter(Boolean);
 
-      const fromEmail = process.env.CONTACT_FROM_EMAIL || "Cloudzyne <inquiries@cloudzyne.com>";
+      const fromEmail = process.env.CONTACT_FROM_EMAIL || "Cloudzyne <info@cloudzyne.com>";
 
       const emailSubject = `New Project Inquiry from ${result.data.name}`;
       const emailText = `New contact inquiry received on Cloudzyne:
